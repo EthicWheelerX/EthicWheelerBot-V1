@@ -1,0 +1,26 @@
+name: Test Bot Deployment
+
+on:
+  push:
+    branches:
+      - main  # Change si ton branche principale a un autre nom
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout du repo
+        uses: actions/checkout@v3
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18  # Change selon la version de ton bot
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Lancer le bot
+        run: node index.js
